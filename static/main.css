@@ -1,0 +1,33 @@
+*{
+    font-size: 1.2rem;
+    text-align: center;
+    font-family: Helvetica, Arial ,sans-serif;
+    background-color: azure;
+}
+
+#error{
+    color: red;
+}
+input{
+    border-radius: 20px;
+    width: 100%;
+    border: none;
+}
+
+button{
+    border-radius: 20px;
+    width: 50%;
+    background-color: lightgreen;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+button:active{
+    background-color: black;
+}
+
+form{
+    margin-top: 20%;
+    line-height: 180%;
+}
