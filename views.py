@@ -28,6 +28,12 @@ def generate_username(number=10):
     for len in range(number):
         id += choice(hexdigits)
     return id
+    
+def generate_id(no:int=12) -> int:
+    id :str = ''
+    for num in range(no):
+        id += str(choice(digits))
+    return int(id)
 
 def signup(request):
     signup_form = Signup()
@@ -134,7 +140,7 @@ def reset_password(request):
         
         print(secret_token, user)
 
-        ResetPassword.objects.create(user_id=user, token=token, end_time=time)
+        ResetPassword.objects.create(id=generate_id(5),user_id=user, token=token, end_time=time)
 
         print(len(connection.queries))
         # send email with token
