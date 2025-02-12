@@ -16,7 +16,7 @@ class TestApp(TestCase):
             'name': 'Ray Mod',
             'password' : 'Password&1.'
         }
-        result = self.request.post('/auth/signup', data)
+        result = self.request.post('/auth/signup/', data)
         self.assertEqual(result.content, b'<ul class="errorlist"><li>email<ul class="errorlist"><li>Enter a valid email address.</li><li>Enter a valid email address.</li></ul></li></ul>')
 
         # simple password input 
@@ -25,7 +25,7 @@ class TestApp(TestCase):
             'name': 'Ray Mod',
             'password' : 'Password'
         }
-        result = self.request.post('/auth/signup', data)
+        result = self.request.post('/auth/signup/', data)
         self.assertEqual(result.content,b'<ul class="errorlist"><li>password<ul class="errorlist"><li>This password is too common.</li></ul></li></ul>')
         
 
@@ -36,7 +36,7 @@ class TestApp(TestCase):
             'name': 'Ray Mod',
             'password' : 'Password&1.'
         }
-        result = self.request.post('/auth/signup', data)
+        result = self.request.post('/auth/signup/', data)
         self.assertEqual(result.status_code, 200)
 
 
@@ -46,7 +46,7 @@ class TestApp(TestCase):
             'email': 'test@gmail.com',
             'password': 'hello'
         }
-        result = self.request.post('/auth/login', data)
+        result = self.request.post('/auth/login/', data)
         self.assertEqual(result.content, b'Password invalid try again')
         
         #good input login
@@ -54,7 +54,7 @@ class TestApp(TestCase):
             'email': 'test@gmail.com',
             'password' : 'Password&1.'
         }
-        result = self.request.post('/auth/login', data)
+        result = self.request.post('/auth/login/', data)
 
         self.assertEqual(result.status_code, 204)
 
@@ -64,7 +64,7 @@ class TestApp(TestCase):
             'New_Password':'Password%1..',
             'New_Password_Again':'Password%1..',
         }
-        result = self.request.post('/auth/change-password', data)
+        result = self.request.post('/auth/change-password/', data)
         self.assertEqual(result.status_code, 200)
 
         # change password same old password
@@ -74,7 +74,7 @@ class TestApp(TestCase):
             'New_Password':'Password%1..',
             'New_Password_Again':'Password%1..',
         }
-        result = self.request.post('/auth/change-password', data)
+        result = self.request.post('/auth/change-password/', data)
 
         self.assertEqual(result.content, b'<ul><li>  Old Pasword & New Password <ul class="errorlist"><li>Old password and New password should be different </li> </ul></li></ul>')
 
@@ -82,7 +82,7 @@ class TestApp(TestCase):
         data = {
             'Email':'main@gmail.com',
         }
-        result = self.request.post('/auth/reset-password', data)
+        result = self.request.post('/auth/reset-password/', data)
         
         self.assertEqual(result.content, b'<ul><li>  Email <ul class="errorlist"><li> There is no user with this email please try again </li> </ul></li></ul>')
 
@@ -90,7 +90,7 @@ class TestApp(TestCase):
         data = {
             'Email':'test@gmail.com',
         }
-        result = self.request.post('/auth/reset-password', data)
+        result = self.request.post('/auth/reset-password/', data)
         # print(result.content)
         self.assertEqual(result.content, b'Check you email you have the link to change your password')
 
@@ -98,7 +98,7 @@ class TestApp(TestCase):
         
         
     def test_Redirect(self):
-        result = self.request.get('/auth/change-password')
+        result = self.request.get('/auth/change-password/')
         self.assertEqual(result.status_code, 302)
 
 

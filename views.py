@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponse
 from .forms import Login, PasswordReset, Signup, Change, Reset
 from .models import UserModels, ResetPassword
 from secrets import choice, token_urlsafe
-from string import hexdigits, digits
+from string import hexdigits
 from django.contrib.auth.hashers import make_password, check_password, MD5PasswordHasher
 from django.contrib.auth import login as _login
 from django.db import connection
